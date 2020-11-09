@@ -1,0 +1,156 @@
+#encoding: -*- utf-8 -*-
+#:import Factory kivy.factory.Factory
+<MainWindow>:
+    id: tela
+    cols: 1
+    padding: 10
+    spacing: 10
+    canvas:
+        Color:
+            rgb: 0.900,0.900,0.900
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    FloatLayout:
+
+        Button:
+            pos: 10, 440
+            size_hint: None, None
+            size: 33, 30
+            background_normal: 'resources/confbtn.png'
+            background_down: 'resources/confbtndown.png'
+            on_press: root.configbtn()
+
+
+    FloatLayout:
+        canvas:
+            Rectangle:
+                source: 'resources/crticontrp.png'
+                pos: 50, 320
+                size: 150, 150
+    FloatLayout:
+        id: spinner
+        orientation: 'vertical'
+        Spinner:
+            pos: 10, 300
+            id: opcoes
+            text: 'Compras no Estado'
+            values: 'Compras no Estado', 'Compras fora do Estado', 'Serviços'
+            size_hint: 1, None
+            size: 200, 30
+            background_normal: ''
+            background_color: 0,0.1,0.4,1
+            option_cls: Factory.get("MySpinnerOption")
+
+    FloatLayout:
+        Label:
+            pos: 10, 255
+            text: 'Digite um valor a ser calculado:'
+            font_name: 'Calibri'
+            font_size: 15
+            color: 0,0,0,1
+
+    FloatLayout:
+        TextInput:
+            id: digitado
+            write_tab: False
+            pos: 10, 240
+            multiline: False
+            focus: True
+            on_text_validate: tela.calculo()
+            size_hint: 1, None
+            size: (10,30)
+
+    FloatLayout:
+        orientation: 'vertical'
+        Button:
+            id: botao
+            text: 'Calcular'
+            size_hint: None, None
+            focus: False
+            size: (95,30)
+            pos: 75, 205
+            on_press: tela.calculo()
+            background_color: 0,0.2,1,1
+
+    FloatLayout:
+        orientation: 'vertical'
+        TextInput:
+            id: resultado
+            readonly: True
+            write_tab: False
+            pos: 10, 10
+            size_hint: None, None
+            size: 230, 190
+
+
+<PopupConfig>:
+    Label:
+        text: 'Dentro do estado:'
+        pos: 20, 273
+        font_name: 'Calibri'
+        font_size: 15
+
+    TextInput:
+        id: campo1
+        input_filter: 'float'
+        multiline: False
+        write_tab: False
+        size_hint: None, None
+        size: 90, 25
+        pos: 140, 310
+        font_name: 'Calibri'
+        font_size: 15
+
+    Label:
+        text: 'Fora do estado:'
+        pos: 13, 243
+        font_name: 'Calibri'
+        font_size: 15
+
+    TextInput:
+        id: campo2
+        multiline: False
+        input_filter: 'float'
+        write_tab: False
+        size_hint: None, None
+        size: 90, 25
+        pos: 140, 280
+        font_name: 'Calibri'
+        font_size: 15
+
+    Label:
+        text: 'Serviços:    '
+        pos: 0, 214
+        font_name: 'Calibri'
+        font_size: 15
+
+    TextInput:
+        id: campo3
+        multiline: False
+        input_filter: 'float'
+        write_tab: False
+        size_hint: None, None
+        size: 90, 25
+        pos: 140, 250
+        font_name: 'Calibri'
+        font_size: 15
+        on_text_validate: root.salvbtn()
+
+    Button:
+        id: salvar
+        text: 'Salvar'
+        on_press: root.salvbtn()
+        font_name: 'Calibri'
+        font_size: 15
+        size_hint: None, None
+        size: 90, 30
+        pos: 80, 200
+
+
+<MySpinnerOption@SpinnerOption>:
+    background_normal: ''
+    background_color: 0,0.1,0.3,1
+    background_down: 'atlas://data/images/defaulttheme/spinner'
+    height: 30
