@@ -21,7 +21,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.lang.builder import Builder
 from kivy.uix.bubble import Bubble
 
-taxas = {'estado': '1.54', 'foraestado': '1.70', 'servicos': '1.62'}
+taxas = {'estado': '1.05', 'foraestado': '1.07', 'servicos': '1.06'}
 
 def tratar_entrada(entrada):
 	entrada = locale.atof(entrada)
